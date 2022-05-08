@@ -26,10 +26,14 @@ const UserInfo = ({ data, repositories }) => {
         <p>{data.following}</p>
       </UsersInfoData>
       <UsersRepositories>
+      <h2>Repositories ({data.public_repos})</h2>
         {repositories.map((repo) => (
+          <>
           <div key={repo.name}>
             <a href={repo.html_url} target="_blank">{repo.name}</a>
+            <p>{repo.description}</p>
           </div>
+          </>
         ))}
       </UsersRepositories>
     </UsersInfo>
