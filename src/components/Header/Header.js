@@ -20,6 +20,7 @@ const Header = () => {
   const [username, setUsername] = useState("");
 
   const onChangeHandler = (e) => {
+    e.preventDefault()
     setUsername(e.target.value);
   };
   return (
