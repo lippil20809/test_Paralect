@@ -2,16 +2,8 @@ import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
-import { debounce } from "lodash";
 
 const UserInput = ({ handleChange, username }) => {
-
-  const handleKeyPress = (e) => {
-    if(e.key === 'Enter'){
-      console.log('enter press here! ')
-    }
-  }
-
   return (
     <>
       <Box>
@@ -28,8 +20,7 @@ const UserInput = ({ handleChange, username }) => {
           value={username}
           type="text"
           placeholder="Enter GitHub username"
-          onChange={debounce(handleChange, 1000)}
-          onKeyPress={handleKeyPress}
+          onKeyPress={handleChange}
         />
       </Box>
     </>

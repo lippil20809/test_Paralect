@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { getUser, getUserRepos } from "../../api/users";
 import useRequest from "../../hooks/useRequest";
+import { LinearProgress } from "@mui/material";
 import styled from "styled-components";
 
 const UsersInfo = styled("div")`
@@ -21,18 +22,20 @@ const UserInfo = ({ username }) => {
   const requestUser = useCallback(() => getUser(username), [username]);
   const requestRepos = useCallback(() => getUserRepos(username), [username]);
   const { data, loading, error } = useRequest(requestUser);
-  const { data: repositories , loading: load, error: err } = useRequest(requestRepos);
+  const {
+    data: repositories,
+    loading: load,
+    error: err,
+  } = useRequest(requestRepos);
 
   return (
     <UsersInfo>
       <UsersInfoData>
-      {loading && 'loading...'}
-      {error && 'some error...'}
         {data && (
           <>
-            <img src={data.avatar_url} alt=''></img>
+            <img src={data.avatar_url} alt=""></img>
             <h2>{data.name}</h2>
-            <a href={data.html_url} target="_blank"  without rel="noreferrer">
+            <a href={data.html_url} target="_blank" rel="noreferrer">
               {data.login}
             </a>
             <p>{data.followers}</p>
@@ -42,18 +45,16 @@ const UserInfo = ({ username }) => {
       </UsersInfoData>
       <UsersRepositories>
         <h2>Repositories ({data && data.public_repos})</h2>
-        {load && 'loading...'}
-        {err && 'some error...'}
+        {load && <LinearProgress />}
+        {err && "some error..."}
         {repositories &&
-          repositories.map((repo) => (
-            <>
-              <div key={repo.name}>
-                <a href={repo.html_url} target="_blank"  without rel="noreferrer">
-                  {repo.name}
-                </a>
-                <p>{repo.description}</p>
-              </div>
-            </>
+          repositories?.map((repo) => (
+            <div key={repo.id}>
+              <a href={repo.html_url} target="_blank" rel="noreferrer">
+                {repo.name}
+              </a>
+              <p>{repo.description}</p>
+            </div>
           ))}
       </UsersRepositories>
     </UsersInfo>
