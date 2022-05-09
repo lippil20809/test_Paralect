@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Input from "../Input/Input";
 import UserInfo from "../UserInfo/UserInfo";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -17,36 +17,11 @@ const UserContainer = styled("div")`
 `;
 
 const Header = () => {
-  const [data, setData] = useState({});
   const [username, setUsername] = useState("");
-  const [repositories, setRepositories] = useState([]);
 
   const onChangeHandler = (e) => {
     setUsername(e.target.value);
   };
-
-  useEffect(() => {
-    async function fetchUser() {
-      if (username) {
-        try {
-          const profile = await fetch(
-            `https://api.github.com/users/${username}`
-          );
-          const profileJson = await profile.json();
-          const repositories = await fetch(profileJson.repos_url);
-          const reposJson = await repositories.json();
-          if (profileJson) {
-            setData(profileJson);
-            setRepositories(reposJson);
-          }
-        } catch (e) {
-          console.log("err");
-        }
-      }
-    }
-    fetchUser();
-  }, [username]);
-
   return (
     <>
       <UsersContainer>
@@ -61,7 +36,7 @@ const Header = () => {
           <Input handleChange={onChangeHandler} value={username} />
         </UserContainer>
       </UsersContainer>
-      <UserInfo data={data} repositories={repositories} />
+      <UserInfo username={username} />
     </>
   );
 };
