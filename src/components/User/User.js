@@ -1,6 +1,5 @@
 import React from "react";
-import { Avatar,LinearProgress } from "@mui/material";
-
+import { Avatar } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 import PersonIcon from "@mui/icons-material/Person";
 import styled from "styled-components";
@@ -41,10 +40,9 @@ const UsersInfoData = styled("div")`
   }
 `;
 
-const User = ({ data,load }) => {
+const User = ({ data }) => {
   return (
     <UsersInfoData>
-        {load && <LinearProgress />}
       {data && (
         <>
           <Avatar

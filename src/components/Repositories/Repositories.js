@@ -1,5 +1,4 @@
 import React from "react";
-import { LinearProgress } from "@mui/material";
 import styled from "styled-components";
 
 const UsersRepositories = styled("div")`
@@ -43,11 +42,9 @@ const DataRepositories = styled("h2")`
   margin-bottom: 29px;
 `;
 
-const Repositories = ({ load, err, data, repositories }) => {
+const Repositories = ({ data, repositories }) => {
   return (
     <UsersRepositories>
-      {load && <LinearProgress />}
-      {/* {err && "some error..."} */}
       {data && (
         <DataRepositories>Repositories ({data.public_repos})</DataRepositories>
       )}

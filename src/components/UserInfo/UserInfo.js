@@ -1,10 +1,19 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Repositories from "../Repositories/Repositories";
 import User from "../User/User";
 import { getUser, getUserRepos } from "../../api/users";
 import useRequest from "../../hooks/useRequest";
-import Pagination from "@mui/material/Pagination";
+import { Pagination, CircularProgress } from "@mui/material";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from "styled-components";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#0064EB",
+    },
+  },
+});
 
 const UsersInfo = styled("div")`
   display: flex;
@@ -38,12 +47,12 @@ const RepositoriesNotFound = styled("div")`
 `;
 
 const UserNotFound = styled("div")`
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
   margin-top: 212px;
-  >h2{
+  > h2 {
     font-size: 22px;
     font-family: "Inter", sans-serif;
     font-weight: 400;
@@ -56,14 +65,14 @@ const UserNotFound = styled("div")`
 
 const UserInfo = ({ username }) => {
   const requestUser = useCallback(() => getUser(username), [username]);
-  const { data, loading, error } = useRequest(requestUser);
+  const { data } = useRequest(requestUser);
   const [repositories, setRepositories] = useState([]);
   const [allRepositories, setAllRepositories] = useState([]);
   const [currentNumberStart, setCurrentNumberStart] = useState(null);
   const [currentNumberEnd, setCurrentNumberEnd] = useState(null);
   const [load, setLoading] = useState(false);
   const [err, setError] = useState(false);
-  const [oldNumPage, setOldNumPage] = useState(0);
+  //const [oldNumPage, setOldNumPage] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -79,12 +88,8 @@ const UserInfo = ({ username }) => {
       })
       .finally(() => {
         setLoading(false);
+        setError(false);
       });
-
-    // const endOffset = itemOffset + itemsPerPage;
-    // setRepositories(items.slice(itemOffset, endOffset));
-    // console.log("itemOffset: ", itemOffset, " endOffset: ", endOffset);
-    // setPageCount(Math.ceil(items.length / itemsPerPage));
   }, [username]);
 
   // //1
@@ -101,37 +106,51 @@ const UserInfo = ({ username }) => {
     if (value === 1) {
       setInitialNumPage(allRepositories);
     } else {
-      //oldValue - value
       setCurrentNumberStart(value * 3 - 1);
       setCurrentNumberEnd(value * 3 + 3);
-      console.log("currentNumberStart: ", currentNumberStart);
-      console.log("currentNumberEnd: ", currentNumberEnd);
     }
     setRepositories(allRepositories.slice(value * 3 - 1, value * 3 + 3));
+  };
+
+  const setInitialNumPage = (data) => {
+    if (data.length === 0) {
+      setCurrentNumberStart(0);
+      setCurrentNumberEnd(0);
+    }
+    if (data.length >= 1) {
+      console.log("data.length >= 1: ");
+      setCurrentNumberStart(1);
+    }
+    if (data.length <= 4) {
+      setCurrentNumberEnd(data.length);
+    }
+    if (data.length > 4) {
+      setCurrentNumberEnd(4);
+    }
   };
 
   return (
     <>
       <UsersInfo>
-        {data && data.login ? (
+        {load ? (
+          <CircularProgress sx={{ margin: "auto", marginTop: "250px" }} />
+        ) : data && data.login ? (
           <>
-            <User data={data} load={load} />
-
+            <User data={data} />
             {data && data.public_repos ? (
               <UsersRepositories>
-                <Repositories
-                  data={data}
-                  err={err}
-                  load={load}
-                  repositories={repositories}
-                />
+                <Repositories data={data} repositories={repositories} />
                 <div>
                   {currentNumberStart} - {currentNumberEnd} of{" "}
                   {data && data.public_repos} items
+                  <ThemeProvider theme={theme}>
                   <Pagination
                     count={Math.round(data.public_repos / 4)}
                     onChange={handleChange}
+                    shape="rounded"
+                    color= "primary" 
                   />
+                   </ThemeProvider>
                 </div>
               </UsersRepositories>
             ) : (
@@ -144,8 +163,8 @@ const UserInfo = ({ username }) => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M31.5 24C23.4919 24 17 30.4919 17 38.5V71.5C17 79.5081 23.4919 86 31.5 86H78.5C86.5081 86 93 79.5081 93 71.5V38.5C93 30.4919 86.5081 24 78.5 24H31.5ZM26 38.5C26 35.4624 28.4624 33 31.5 33H78.5C81.5376 33 84 35.4624 84 38.5V71.5C84 74.5376 81.5376 77 78.5 77H31.5C28.4624 77 26 74.5376 26 71.5V38.5ZM65.1984 48.6422C66.37 47.4706 66.37 45.5711 65.1984 44.3995C64.0268 43.228 62.1274 43.228 60.9558 44.3995L55.2989 50.0564L49.6421 44.3995C48.4705 43.228 46.571 43.228 45.3994 44.3995C44.2279 45.5711 44.2279 47.4706 45.3994 48.6422L51.0563 54.299L45.3994 59.9559C44.2279 61.1274 44.2279 63.0269 45.3994 64.1985C46.571 65.3701 48.4705 65.3701 49.6421 64.1985L55.2989 58.5417L60.9558 64.1985C62.1273 65.3701 64.0268 65.3701 65.1984 64.1985C66.37 63.0269 66.37 61.1274 65.1984 59.9559L59.5416 54.299L65.1984 48.6422Z"
                     fill="#808080"
                   />
@@ -164,8 +183,8 @@ const UserInfo = ({ username }) => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M46 35.5C46 30.2533 50.2533 26 55.5 26C60.7467 26 65 30.2533 65 35.5C65 40.7467 60.7467 45 55.5 45C50.2533 45 46 40.7467 46 35.5ZM55.5 17C45.2827 17 37 25.2827 37 35.5C37 45.7173 45.2827 54 55.5 54C65.7173 54 74 45.7173 74 35.5C74 25.2827 65.7173 17 55.5 17ZM32 87.5C32 74.5213 42.5213 64 55.5 64C68.4787 64 79 74.5213 79 87.5C79 89.9853 81.0147 92 83.5 92C85.9853 92 88 89.9853 88 87.5C88 69.5507 73.4493 55 55.5 55C37.5507 55 23 69.5507 23 87.5C23 89.9853 25.0147 92 27.5 92C29.9853 92 32 89.9853 32 87.5Z"
                 fill="#808080"
               />
@@ -176,23 +195,6 @@ const UserInfo = ({ username }) => {
       </UsersInfo>
     </>
   );
-
-  function setInitialNumPage(data) {
-    if (data.length === 0) {
-      setCurrentNumberStart(0);
-      setCurrentNumberEnd(0);
-    }
-    if (data.length >= 1) {
-      console.log("data.length >= 1: ");
-      setCurrentNumberStart(1);
-    }
-    if (data.length <= 4) {
-      setCurrentNumberEnd(data.length);
-    }
-    if (data.length > 4) {
-      setCurrentNumberEnd(4);
-    }
-  }
 };
 
 export default UserInfo;
