@@ -5,7 +5,7 @@ import styled from "styled-components";
 const UsersRepositories = styled("div")`
   display: flex;
   flex-direction: column;
-  margin-left: 85px;
+  margin-left: 96px;
 `;
 
 const UserRepositorie = styled("div")`
@@ -35,7 +35,7 @@ const UserRepositorie = styled("div")`
 
 const DataRepositories = styled("h2")`
   font-size: 32px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   line-height: 41.6px;
   letter-spacing: 1px;
@@ -47,7 +47,7 @@ const Repositories = ({ load, err, data, repositories }) => {
   return (
     <UsersRepositories>
       {load && <LinearProgress />}
-      {err && "some error..."}
+      {/* {err && "some error..."} */}
       {data && (
         <DataRepositories>Repositories ({data.public_repos})</DataRepositories>
       )}
