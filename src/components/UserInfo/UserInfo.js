@@ -4,7 +4,7 @@ import User from "../User/User";
 import { getUser, getUserRepos } from "../../api/users";
 import useRequest from "../../hooks/useRequest";
 import { Pagination, CircularProgress } from "@mui/material";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
 const theme = createTheme({
@@ -19,6 +19,13 @@ const UsersInfo = styled("div")`
   display: flex;
   width: 1366px;
   margin: 0 auto;
+  flex-direction: row;
+  @media(max-width:620px){
+
+    flex-direction:column
+    margin: none ;
+    width: none ;
+  }
 `;
 
 const UsersRepositories = styled("div")`
@@ -43,6 +50,21 @@ const RepositoriesNotFound = styled("div")`
     color: #808080;
     text-align: center;
     margin-top: 24px;
+  }
+`;
+
+const RepositoriesPagination = styled("div")`
+  position: absolute;
+  top: 735px;
+  left: 877px;
+  > h2 {
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 21px;
+    color: #808080;
+    margin-top: 5px;
+    margin-right: 10px;
   }
 `;
 
@@ -72,7 +94,6 @@ const UserInfo = ({ username }) => {
   const [currentNumberEnd, setCurrentNumberEnd] = useState(null);
   const [load, setLoading] = useState(false);
   const [err, setError] = useState(false);
-  //const [oldNumPage, setOldNumPage] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -92,22 +113,13 @@ const UserInfo = ({ username }) => {
       });
   }, [username]);
 
-  // //1
-  // 0, 4
-  // //2
-  // 4, 8
-  // //3
-  // 8, 12
-  // //4
-  // 12, 16
-
   const handleChange = (event, value) => {
     console.log("value: ", value);
     if (value === 1) {
       setInitialNumPage(allRepositories);
     } else {
-      setCurrentNumberStart(value * 3 - 1);
-      setCurrentNumberEnd(value * 3 + 3);
+      setCurrentNumberStart(value * 4 - 3);
+      setCurrentNumberEnd(value * 4);
     }
     setRepositories(allRepositories.slice(value * 3 - 1, value * 3 + 3));
   };
@@ -132,6 +144,7 @@ const UserInfo = ({ username }) => {
   return (
     <>
       <UsersInfo>
+        {/* {err && 'sdfsdf'} */}
         {load ? (
           <CircularProgress sx={{ margin: "auto", marginTop: "250px" }} />
         ) : data && data.login ? (
@@ -140,18 +153,20 @@ const UserInfo = ({ username }) => {
             {data && data.public_repos ? (
               <UsersRepositories>
                 <Repositories data={data} repositories={repositories} />
-                <div>
-                  {currentNumberStart} - {currentNumberEnd} of{" "}
-                  {data && data.public_repos} items
+                <RepositoriesPagination>
+                  <h2>
+                    {currentNumberStart} - {currentNumberEnd} of{" "}
+                    {data && data.public_repos} items
+                  </h2>
                   <ThemeProvider theme={theme}>
-                  <Pagination
-                    count={Math.round(data.public_repos / 4)}
-                    onChange={handleChange}
-                    shape="rounded"
-                    color= "primary" 
-                  />
-                   </ThemeProvider>
-                </div>
+                    <Pagination
+                      count={Math.ceil(data.public_repos / 4)}
+                      onChange={handleChange}
+                      shape="rounded"
+                      color="primary"
+                    />
+                  </ThemeProvider>
+                </RepositoriesPagination>
               </UsersRepositories>
             ) : (
               <RepositoriesNotFound>

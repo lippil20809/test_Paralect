@@ -13,6 +13,10 @@ const UsersContainer = styled("div")`
     height: 72px;
     display: flex;
   }
+  @media(max-width:320px){
+    width: 100%;
+    width: 320px;
+  }
 `;
 
 const UsersInfo = styled("div")`

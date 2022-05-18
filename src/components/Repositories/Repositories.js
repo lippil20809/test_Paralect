@@ -15,6 +15,9 @@ const UserRepositorie = styled("div")`
   padding-top: 24px;
   padding-bottom: 24px;
   padding-left: 32px;
+  @media(max-width:320px){
+   
+  }
   > p {
     margin-top: 16px;
     font-size: 16px;

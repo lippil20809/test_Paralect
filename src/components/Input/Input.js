@@ -2,6 +2,15 @@ import React from "react";
 import { Paper, InputBase } from "@mui/material";
 import styled from "styled-components";
 
+const InputUser =styled('div')`
+width:500px
+min-width:500px 
+@media(max-width:320px){
+  width: 265px; 
+  max-width:320px
+  }
+`
+
 const InputSvg = styled("svg")`
   position: relative;
   top: 1px;
@@ -9,11 +18,12 @@ const InputSvg = styled("svg")`
 
 const UserInput = ({ handleChange, username }) => {
   return (
-    <>
+    <InputUser>
       <Paper
         sx={{
-          width: "500px",
-          height: "40px",
+          //minWidth:'100px',
+          //width: "500px",
+          //height: "40px",
           marginTop: "16px",
           marginLeft: "22px",
           borderRadius: "6px",
@@ -38,7 +48,8 @@ const UserInput = ({ handleChange, username }) => {
           sx={{
             ml: 1,
             flex: 1,
-            width: "400px",
+            //minWidth:'100px',
+            //width: "400px",
             height: "40px",
             fontFamily: "Inter",
             fontWeight: "400",
@@ -51,7 +62,7 @@ const UserInput = ({ handleChange, username }) => {
           value={username}
         />
       </Paper>
-    </>
+    </InputUser>
   );
 };
 
