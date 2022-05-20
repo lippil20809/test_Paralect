@@ -3,7 +3,7 @@ import Repositories from "../Repositories/Repositories";
 import User from "../User/User";
 import { getUser, getUserRepos } from "../../api/users";
 import useRequest from "../../hooks/useRequest";
-import { Pagination, CircularProgress } from "@mui/material";
+import { Pagination, CircularProgress, Alert } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
@@ -19,12 +19,9 @@ const UsersInfo = styled("div")`
   display: flex;
   width: 1366px;
   margin: 0 auto;
-  flex-direction: row;
-  @media(max-width:620px){
-
-    flex-direction:column
-    margin: none ;
-    width: none ;
+  @media (max-width: 320px) {
+    flex-direction: column;
+    width:320px ;
   }
 `;
 
@@ -66,6 +63,11 @@ const RepositoriesPagination = styled("div")`
     margin-top: 5px;
     margin-right: 10px;
   }
+  @media (max-width: 320px) {
+    position: initial;
+    direction: flex ;
+    flex-direction: column;
+  }
 `;
 
 const UserNotFound = styled("div")`
@@ -87,7 +89,7 @@ const UserNotFound = styled("div")`
 
 const UserInfo = ({ username }) => {
   const requestUser = useCallback(() => getUser(username), [username]);
-  const { data } = useRequest(requestUser);
+  let { data } = useRequest(requestUser);
   const [repositories, setRepositories] = useState([]);
   const [allRepositories, setAllRepositories] = useState([]);
   const [currentNumberStart, setCurrentNumberStart] = useState(null);
@@ -97,14 +99,17 @@ const UserInfo = ({ username }) => {
 
   useEffect(() => {
     setLoading(true);
-    getUserRepos(username)
+    getUserRepos(username, 1)
       .then((data) => {
         setAllRepositories([...data]);
-        console.log(data);
         setRepositories(data.slice(0, 4));
         setInitialNumPage(data);
       })
       .catch((error) => {
+        setRepositories([]);
+        setAllRepositories([]);
+        setCurrentNumberStart(null);
+        setCurrentNumberEnd(null);
         setError(error);
       })
       .finally(() => {
@@ -113,15 +118,20 @@ const UserInfo = ({ username }) => {
       });
   }, [username]);
 
-  const handleChange = (event, value) => {
-    console.log("value: ", value);
+  const handleChange = async (event, value) => {
+    let repo = null;
+    try {
+      repo = await getUserRepos(username, value).then((r) => r);
+    } catch (error) {
+      setError(error);
+    }
+    setRepositories(repo);
     if (value === 1) {
       setInitialNumPage(allRepositories);
     } else {
       setCurrentNumberStart(value * 4 - 3);
-      setCurrentNumberEnd(value * 4);
+      setCurrentNumberEnd(repo.length < 4 ? data.public_repos : value * 4);
     }
-    setRepositories(allRepositories.slice(value * 3 - 1, value * 3 + 3));
   };
 
   const setInitialNumPage = (data) => {
@@ -130,7 +140,6 @@ const UserInfo = ({ username }) => {
       setCurrentNumberEnd(0);
     }
     if (data.length >= 1) {
-      console.log("data.length >= 1: ");
       setCurrentNumberStart(1);
     }
     if (data.length <= 4) {
@@ -144,7 +153,7 @@ const UserInfo = ({ username }) => {
   return (
     <>
       <UsersInfo>
-        {/* {err && 'sdfsdf'} */}
+        {err && <Alert severity="error">{"error"}</Alert>}
         {load ? (
           <CircularProgress sx={{ margin: "auto", marginTop: "250px" }} />
         ) : data && data.login ? (

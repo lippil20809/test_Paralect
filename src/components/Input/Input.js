@@ -3,11 +3,9 @@ import { Paper, InputBase } from "@mui/material";
 import styled from "styled-components";
 
 const InputUser =styled('div')`
-width:500px
-min-width:500px 
+width:500px;
 @media(max-width:320px){
   width: 265px; 
-  max-width:320px
   }
 `
 
@@ -21,9 +19,7 @@ const UserInput = ({ handleChange, username }) => {
     <InputUser>
       <Paper
         sx={{
-          //minWidth:'100px',
-          //width: "500px",
-          //height: "40px",
+          height: "40px",
           marginTop: "16px",
           marginLeft: "22px",
           borderRadius: "6px",
@@ -48,8 +44,6 @@ const UserInput = ({ handleChange, username }) => {
           sx={{
             ml: 1,
             flex: 1,
-            //minWidth:'100px',
-            //width: "400px",
             height: "40px",
             fontFamily: "Inter",
             fontWeight: "400",

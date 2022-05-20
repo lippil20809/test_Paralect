@@ -14,8 +14,9 @@ const UsersContainer = styled("div")`
     display: flex;
   }
   @media(max-width:320px){
-    width: 100%;
-    width: 320px;
+   >div {
+     width: 320px ;
+   }
   }
 `;
 
@@ -24,6 +25,9 @@ const UsersInfo = styled("div")`
   margin: 0 auto;
   width: 1366px;
   display: flex;
+  @media(max-width:320px){
+     width: 320px ;
+  }
 `;
 
 const InitialState = styled("div")`
@@ -41,6 +45,9 @@ const InitialState = styled("div")`
     color: #808080;
     text-align: center;
     margin-top: 47px;
+  }
+  @media(max-width:320px){
+     width: 320px ;
   }
 `;
 

@@ -41,6 +41,10 @@ const UsersInfoData = styled("div")`
 `;
 
 const User = ({ data }) => {
+  const UserFollowers = (value) => {
+    return value / 1000 > 1 ? (value / 1000).toFixed(1) + "k" : value;
+  };
+
   return (
     <UsersInfoData>
       {data && (
@@ -57,7 +61,7 @@ const User = ({ data }) => {
           <div>
             <div>
               <PeopleIcon sx={{ color: "#808080" }} />
-              <p>{data.followers} followers</p>
+              <p>{UserFollowers(data.followers)} followers</p>
             </div>
             <div>
               <PersonIcon sx={{ color: "#808080" }} />
