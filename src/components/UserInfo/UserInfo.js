@@ -19,10 +19,12 @@ const UsersInfo = styled("div")`
   display: flex;
   width: 1366px;
   margin: 0 auto;
-  @media (max-width: 320px) {
+   @media (min-width: 320px) and (max-width: 375px) {
+    min-width: 320px;
+    max-width: 375px;
+    width:0 ;
     flex-direction: column;
-    width:320px ;
-  }
+  } ;
 `;
 
 const UsersRepositories = styled("div")`
@@ -63,7 +65,7 @@ const RepositoriesPagination = styled("div")`
     margin-top: 5px;
     margin-right: 10px;
   }
-  @media (max-width: 320px) {
+  @media (min-width: 320px) and (max-width: 375px)  {
     position: initial;
     direction: flex ;
     flex-direction: column;

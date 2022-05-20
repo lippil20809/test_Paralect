@@ -2,12 +2,14 @@ import React from "react";
 import { Paper, InputBase } from "@mui/material";
 import styled from "styled-components";
 
-const InputUser =styled('div')`
-width:500px;
-@media(max-width:320px){
-  width: 265px; 
-  }
-`
+const InputUser = styled("div")`
+  width: 500px;
+  @media (min-width: 320px) and (max-width: 375px) {
+    min-width: 265px;
+    max-width: 295px;
+    width:0 ;
+  } ;  
+`;
 
 const InputSvg = styled("svg")`
   position: relative;

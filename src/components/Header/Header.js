@@ -7,17 +7,19 @@ import styled from "styled-components";
 const UsersContainer = styled("div")`
   background: #0064eb;
   > div {
-    width: 100%;
+  
     margin: 0 auto;
     width: 1366px;
     height: 72px;
     display: flex;
   }
-  @media(max-width:320px){
-   >div {
-     width: 320px ;
-   }
-  }
+  @media (max-width: 320px) and (max-width: 375px) {
+    > div {
+      width: 0;
+      max-width: 375px;
+      max-width: 320px;
+    }
+  } ;
 `;
 
 const UsersInfo = styled("div")`
@@ -25,9 +27,11 @@ const UsersInfo = styled("div")`
   margin: 0 auto;
   width: 1366px;
   display: flex;
-  @media(max-width:320px){
-     width: 320px ;
-  }
+  @media (min-width: 320px) and (max-width: 375px) {
+    min-width: 320px;
+    max-width: 375px;
+    width: 0;
+  } ;
 `;
 
 const InitialState = styled("div")`
@@ -46,9 +50,12 @@ const InitialState = styled("div")`
     text-align: center;
     margin-top: 47px;
   }
-  @media(max-width:320px){
-     width: 320px ;
-  }
+  @media (min-width: 320px) and (max-width: 375px) {
+    min-width: 320px;
+    max-width: 375px;
+    margin-top: 120px;
+    width:0 ;
+  };
 `;
 
 const Header = () => {
