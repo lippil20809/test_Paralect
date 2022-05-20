@@ -7,7 +7,6 @@ const InputUser = styled("div")`
   @media (min-width: 320px) and (max-width: 375px) {
     min-width: 265px;
     max-width: 295px;
-    width:0 ;
   } ;  
 `;
 
