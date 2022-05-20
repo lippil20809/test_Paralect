@@ -45,6 +45,7 @@ const UserInput = ({ handleChange, username }) => {
           sx={{
             ml: 1,
             flex: 1,
+            width: "200px",
             height: "40px",
             fontFamily: "Inter",
             fontWeight: "400",

@@ -7,7 +7,6 @@ import styled from "styled-components";
 const UsersContainer = styled("div")`
   background: #0064eb;
   > div {
-  
     margin: 0 auto;
     width: 1366px;
     height: 72px;
