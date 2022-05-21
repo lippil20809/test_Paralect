@@ -23,9 +23,9 @@ const UsersInfo = styled("div")`
   margin: 0 auto;
   max-width:1366px;
   display: flex;
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 576px) {
     min-width: 320px;
-    max-width: 480px;
+    max-width: 576px;
   } ;
 `;
 
@@ -45,9 +45,9 @@ const InitialState = styled("div")`
     text-align: center;
     margin-top: 47px;
   }
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 576px) {
     min-width: 320px;
-    max-width: 480px;
+    max-width: 576px;
     margin-top: 120px;
   } ;
 `;

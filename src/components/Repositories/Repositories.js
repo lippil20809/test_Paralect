@@ -5,7 +5,7 @@ const UsersRepositories = styled("div")`
   display: flex;
   flex-direction: column;
   margin-left: 96px;
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 576px) {
     margin-left:0;
   } ; 
 `;
@@ -19,7 +19,6 @@ const UserRepositorie = styled("div")`
   padding-top: 24px;
   padding-bottom: 24px;
   padding-left: 32px;
-  }
   > p {
     margin-top: 16px;
     font-size: 16px;
@@ -35,9 +34,9 @@ const UserRepositorie = styled("div")`
     line-height: 29.05px;
     letter-spacing: 1px;
   }
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 576px) {
     min-width: 320px;
-    max-width: 480px;
+    max-width: 576px;
     width:0 ;
   } ;
 `;
