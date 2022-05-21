@@ -22,7 +22,6 @@ const UsersInfo = styled("div")`
   width: 100%;
   margin: 0 auto;
   max-width:1366px;
-  /* width: 1366px; */
   display: flex;
   @media (min-width: 320px) and (max-width: 375px) {
     min-width: 320px;
@@ -72,7 +71,6 @@ const Header = () => {
             sx={{
               fontSize: 44,
               color: "white",
-              marginTop: "14px",
             }}
           />
           </a>
