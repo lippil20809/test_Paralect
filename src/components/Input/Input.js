@@ -4,10 +4,6 @@ import styled from "styled-components";
 
 const InputUser = styled("div")`
   width: 500px;
-  @media (min-width: 320px) and (max-width: 576px) {
-    min-width: 265px;
-    max-width: 520px;
-  } ;
 `;
 
 const InputSvg = styled("svg")`

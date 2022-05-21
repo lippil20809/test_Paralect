@@ -11,10 +11,6 @@ const UsersContainer = styled("div")`
     margin: 0 auto;
     height: 72px;
     display: flex;
-    /* @media (min-width: 320px) and (max-width: 375px) {
-      max-width: 375px;
-      max-width: 320px;
-    } */
   }
 `;
 
@@ -23,9 +19,13 @@ const UsersInfo = styled("div")`
   margin: 0 auto;
   max-width:1366px;
   display: flex;
-  @media (min-width: 320px) and (max-width: 576px) {
+  @media (min-width: 320px) and (max-width: 540px) {
     min-width: 320px;
-    max-width: 576px;
+    max-width: 540px;
+  } ;
+  @media (min-width: 576px) and (max-width: 720px) {
+    min-width: 576px;
+    max-width: 720px;
   } ;
 `;
 
@@ -45,10 +45,15 @@ const InitialState = styled("div")`
     text-align: center;
     margin-top: 47px;
   }
-  @media (min-width: 320px) and (max-width: 576px) {
+  @media (min-width: 320px) and (max-width: 540px) {
     min-width: 320px;
-    max-width: 576px;
-    margin-top: 120px;
+    max-width: 540px;
+    margin-top: 70px;
+  } ;
+  @media (min-width: 576px) and (max-width: 720px) {
+    min-width: 576px;
+    max-width: 720px;
+    margin-top: 70px;
   } ;
 `;
 

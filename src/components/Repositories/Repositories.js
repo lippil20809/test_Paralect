@@ -5,15 +5,19 @@ const UsersRepositories = styled("div")`
   display: flex;
   flex-direction: column;
   margin-left: 96px;
-  @media (min-width: 320px) and (max-width: 576px) {
+  width: 877px;
+  @media (min-width: 320px) and (max-width: 540px) {
     margin-left:0;
+    width:320px;
+  } ; 
+  @media (min-width: 576px) and (max-width: 720px) {
+    margin-left:0;
+    width:576px;
   } ; 
 `;
 
 const UserRepositorie = styled("div")`
   border-radius: 6px;
-  width: 877px;
-  min-width: 320px;
   margin-bottom: 24px;
   background: #ffffff;
   padding-top: 24px;
@@ -34,11 +38,6 @@ const UserRepositorie = styled("div")`
     line-height: 29.05px;
     letter-spacing: 1px;
   }
-  @media (min-width: 320px) and (max-width: 576px) {
-    min-width: 320px;
-    max-width: 576px;
-    width:0 ;
-  } ;
 `;
 
 const DataRepositories = styled("h2")`

@@ -38,6 +38,9 @@ const UsersInfoData = styled("div")`
       }
     }
   }
+  @media (min-width: 576px) and (max-width: 720px) {
+    margin: 39px auto;
+  } ;
 `;
 
 const User = ({ data }) => {
