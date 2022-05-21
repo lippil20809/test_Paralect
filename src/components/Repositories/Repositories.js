@@ -6,14 +6,18 @@ const UsersRepositories = styled("div")`
   flex-direction: column;
   margin-left: 96px;
   width: 877px;
-  @media (min-width: 320px) and (max-width: 540px) {
-    margin-left:0;
-    width:320px;
-  } ; 
-  @media (min-width: 576px) and (max-width: 720px) {
-    margin-left:0;
-    width:576px;
-  } ; 
+  @media (min-width: 320px) and (max-width: 575px) {
+    margin-left: 0;
+    width: 320px;
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
+    margin-left: 0;
+    width: 576px;
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    width: 576px;
+    margin-left: 56px;
+  } ;
 `;
 
 const UserRepositorie = styled("div")`

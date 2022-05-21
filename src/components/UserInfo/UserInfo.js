@@ -19,15 +19,15 @@ const UsersInfo = styled("div")`
   display: flex;
   max-width: 1366px;
   margin: 0 auto;
-  @media (min-width: 320px) and (max-width: 540px) {
+  @media (min-width: 320px) and (max-width: 575px) {
     min-width: 320px;
-    max-width: 540px;
+    max-width: 575px;
     width: 0;
     flex-direction: column;
-  } ;
-  @media (min-width: 576px) and (max-width: 720px) {
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
     min-width: 576px;
-    max-width: 720px;
+    max-width: 767px;
     width: 0;
     flex-direction: column;
   } ;
@@ -56,6 +56,14 @@ const RepositoriesNotFound = styled("div")`
     text-align: center;
     margin-top: 24px;
   }
+  @media (min-width: 320px) and (max-width: 575px) {
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
 `;
 
 const RepositoriesPagination = styled("div")`
@@ -71,16 +79,19 @@ const RepositoriesPagination = styled("div")`
     margin-top: 5px;
     margin-right: 10px;
   }
-  @media (min-width: 320px) and (max-width: 540px) {
+  @media (min-width: 320px) and (max-width: 575px) {
     position: initial;
     direction: flex;
     flex-direction: column;
   }
-  @media (min-width: 576px) and (max-width: 720px) {
+  @media (min-width: 576px) and (max-width: 767px) {
     position: initial;
     direction: flex;
     flex-direction: column;
   }
+  @media (min-width: 768px) and (max-width: 992px) {
+    left: 295px;
+  } ;
 `;
 
 const UserNotFound = styled("div")`

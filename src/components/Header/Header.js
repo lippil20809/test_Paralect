@@ -7,25 +7,35 @@ import styled from "styled-components";
 const UsersContainer = styled("div")`
   background: #0064eb;
   > div {
-    max-width:1366px;
+    max-width: 1366px;
     margin: 0 auto;
     height: 72px;
     display: flex;
+    padding-left: 41px;
+    padding-right: 20px;
+    @media (min-width: 320px) and (max-width: 575px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 `;
 
 const UsersInfo = styled("div")`
   width: 100%;
   margin: 0 auto;
-  max-width:1366px;
+  max-width: 1366px;
   display: flex;
-  @media (min-width: 320px) and (max-width: 540px) {
+  @media (min-width: 320px) and (max-width: 575px) {
     min-width: 320px;
-    max-width: 540px;
-  } ;
-  @media (min-width: 576px) and (max-width: 720px) {
+    max-width: 575px;
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
     min-width: 576px;
-    max-width: 720px;
+    max-width: 767px;
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    min-width: 768px;
+    max-width: 992px;
   } ;
 `;
 
@@ -45,15 +55,19 @@ const InitialState = styled("div")`
     text-align: center;
     margin-top: 47px;
   }
-  @media (min-width: 320px) and (max-width: 540px) {
+  @media (min-width: 320px) and (max-width: 575px) {
     min-width: 320px;
-    max-width: 540px;
+    max-width: 575px;
     margin-top: 70px;
-  } ;
-  @media (min-width: 576px) and (max-width: 720px) {
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
     min-width: 576px;
-    max-width: 720px;
+    max-width: 767px;
     margin-top: 70px;
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    min-width: 768px;
+    max-width: 992px;
   } ;
 `;
 
@@ -72,13 +86,13 @@ const Header = () => {
       <UsersContainer>
         <div>
           <a href="https://github.com/" target="_blank" rel="noreferrer">
-          <GitHubIcon
-            sx={{
-              fontSize: 44,
-              color: "white",
-              marginTop: "14px",
-            }}
-          />
+            <GitHubIcon
+              sx={{
+                fontSize: 44,
+                color: "white",
+                marginTop: "14px",
+              }}
+            />
           </a>
           <Input handleChange={onChangeHandler} value={username} />
         </div>

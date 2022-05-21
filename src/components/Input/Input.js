@@ -7,10 +7,10 @@ const InputUser = styled("div")`
 `;
 
 const InputSvg = styled("svg")`
-  position: relative;
-  top: 1px;
-  margin-left:19px ;
-  margin-right:6px ;
+  /* position: relative;
+  top: 1px; */
+  margin-left: 19px;
+  margin-right: 6px;
 `;
 
 const UserInput = ({ handleChange, username }) => {
@@ -48,7 +48,6 @@ const UserInput = ({ handleChange, username }) => {
             fontFamily: "Inter",
             fontWeight: "400",
             lineHeight: "16.94px",
-            // marginLeft: "12px",
           }}
           placeholder="Enter GitHub username"
           inputProps={{ "aria-label": "Enter GitHub username" }}
