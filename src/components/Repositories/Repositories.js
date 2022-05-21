@@ -6,8 +6,8 @@ const UsersRepositories = styled("div")`
   flex-direction: column;
   margin-left: 96px;
   @media (min-width: 320px) and (max-width: 375px) {
-    margin-left:0;
-  } ; 
+    margin-left: 0;
+  } ;
 `;
 
 const UserRepositorie = styled("div")`

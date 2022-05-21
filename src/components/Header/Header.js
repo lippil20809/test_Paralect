@@ -7,29 +7,26 @@ import styled from "styled-components";
 const UsersContainer = styled("div")`
   background: #0064eb;
   > div {
+    max-width:1366px;
     margin: 0 auto;
-    width: 1366px;
     height: 72px;
     display: flex;
-  }
-  @media (max-width: 320px) and (max-width: 375px) {
-    > div {
-      width: 0;
+    /* @media (min-width: 320px) and (max-width: 375px) {
       max-width: 375px;
       max-width: 320px;
-    }
-  } ;
+    } */
+  }
 `;
 
 const UsersInfo = styled("div")`
   width: 100%;
   margin: 0 auto;
-  width: 1366px;
+  max-width:1366px;
+  /* width: 1366px; */
   display: flex;
   @media (min-width: 320px) and (max-width: 375px) {
     min-width: 320px;
     max-width: 375px;
-    width: 0;
   } ;
 `;
 
@@ -53,8 +50,7 @@ const InitialState = styled("div")`
     min-width: 320px;
     max-width: 375px;
     margin-top: 120px;
-    width:0 ;
-  };
+  } ;
 `;
 
 const Header = () => {
@@ -71,6 +67,7 @@ const Header = () => {
     <>
       <UsersContainer>
         <div>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">
           <GitHubIcon
             sx={{
               fontSize: 44,
@@ -78,6 +75,7 @@ const Header = () => {
               marginTop: "14px",
             }}
           />
+          </a>
           <Input handleChange={onChangeHandler} value={username} />
         </div>
       </UsersContainer>
