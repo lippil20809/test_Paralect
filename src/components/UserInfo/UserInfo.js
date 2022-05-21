@@ -17,11 +17,11 @@ const theme = createTheme({
 
 const UsersInfo = styled("div")`
   display: flex;
-  width: 1366px;
+  max-width: 1366px;
   margin: 0 auto;
-  @media (min-width: 320px) and (max-width: 375px) {
+  @media (min-width: 320px) and (max-width: 480px) {
     min-width: 320px;
-    max-width: 375px;
+    max-width: 480px;
     width: 0;
     flex-direction: column;
   } ;
@@ -65,7 +65,7 @@ const RepositoriesPagination = styled("div")`
     margin-top: 5px;
     margin-right: 10px;
   }
-  @media (min-width: 320px) and (max-width: 375px) {
+  @media (min-width: 320px) and (max-width: 480px) {
     position: initial;
     direction: flex;
     flex-direction: column;

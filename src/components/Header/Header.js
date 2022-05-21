@@ -23,9 +23,9 @@ const UsersInfo = styled("div")`
   margin: 0 auto;
   max-width:1366px;
   display: flex;
-  @media (min-width: 320px) and (max-width: 375px) {
+  @media (min-width: 320px) and (max-width: 480px) {
     min-width: 320px;
-    max-width: 375px;
+    max-width: 480px;
   } ;
 `;
 
@@ -45,9 +45,9 @@ const InitialState = styled("div")`
     text-align: center;
     margin-top: 47px;
   }
-  @media (min-width: 320px) and (max-width: 375px) {
+  @media (min-width: 320px) and (max-width: 480px) {
     min-width: 320px;
-    max-width: 375px;
+    max-width: 480px;
     margin-top: 120px;
   } ;
 `;
@@ -71,6 +71,7 @@ const Header = () => {
             sx={{
               fontSize: 44,
               color: "white",
+              marginTop: "14px",
             }}
           />
           </a>
