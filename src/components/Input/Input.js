@@ -7,8 +7,8 @@ const InputUser = styled("div")`
 `;
 
 const InputSvg = styled("svg")`
-  /* position: relative;
-  top: 1px; */
+  position: relative;
+  top: 1px;
   margin-left: 19px;
   margin-right: 6px;
 `;
