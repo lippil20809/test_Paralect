@@ -17,19 +17,24 @@ const theme = createTheme({
 
 const UsersInfo = styled("div")`
   display: flex;
-  max-width: 1366px;
+  width: 1366px;
   margin: 0 auto;
+  margin-left: 51px;
   @media (min-width: 320px) and (max-width: 575px) {
     min-width: 320px;
     max-width: 575px;
     width: 0;
     flex-direction: column;
+    margin-left: 0;
+    margin: 0 auto;
   }
   @media (min-width: 576px) and (max-width: 767px) {
     min-width: 576px;
     max-width: 767px;
     width: 0;
     flex-direction: column;
+    margin-left: 0;
+    margin: 0 auto;
   } ;
 `;
 
